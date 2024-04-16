@@ -40,6 +40,7 @@ bti.addEventListener('click', async (e) => {
           ap: document.getElementById("ap").value,
           correo: document.getElementById("correo").value,
           tel: document.getElementById("cel").value,
+          favorites: { food: "Pizza", color: "Blue", subject: "recess" },
          
         }
         
@@ -79,7 +80,7 @@ async function ShowUsers() {
           <i class="bi bi-pencil-square"></i> Editar 
           <span class="spinner-border spinner-border-sm" id="Edit-${doc.id}" style="display: none;"></span>
           </button> 
-          <button class="btn-danger btn eliminar_"  data-id="${doc.id}" >
+          <button class="btn-danger btn eliminar_"  data-id="${doc.id}|${datos.nombre}" >
           <i class="bi bi-trash"></i> Eliminar 
           <span class="spinner-border spinner-border-sm" id="elim-${doc.id}" style="display: none;"></span>
           
@@ -111,3 +112,21 @@ const unsubscribe = onSnapshot(q, (querySnapshot) => {
 });
 }
 
+$("#tbUsuarios").on("click", ".eliminar_", async function () {
+
+  const producto_id = $(this).data("id")
+  console.log("click en " + producto_id)
+
+
+  try {
+     
+
+
+    
+
+  } catch (error) {
+      console.log("error", error)
+
+  }
+
+})
