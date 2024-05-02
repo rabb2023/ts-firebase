@@ -19,11 +19,36 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+//const db = firebase.firestore();
+
 let bti =  document.getElementById("inser");
 
 let btc =  document.getElementById("consu");
 
+let btins =  document.getElementById("inser2");
+
 const tablaUsuarios = document.querySelector("#tbUsuarios")
+
+
+btins.addEventListener('click', async (e) => {
+    
+  alert("insertando coleccion......")
+
+  let idcel = document.getElementById("cel");
+
+
+    try {
+      db.collection("usuarios").doc(idcel).collection("materias").doc("001").set({
+        idmat : "ingles",
+        idprofe: "felix",    
+      });
+       // console.log("Document written with ID: ", docRef.id);
+      } catch (e) {
+        console.error("Error adding document: ", e);
+      }
+
+})
+
 
 bti.addEventListener('click', async (e) => {
     
@@ -50,6 +75,8 @@ bti.addEventListener('click', async (e) => {
       }
 
 })
+
+
 
 btc.addEventListener('click', async (e)=> {
 
