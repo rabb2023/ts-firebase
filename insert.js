@@ -1,9 +1,10 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.9.0/firebase-app.js";
 //import { getFirestore } from "./node_modules/firebase/firebase-firestore-lite.js";
 
-import { getFirestore, collection, getDocs,addDoc,setDoc ,deleteDoc,doc, onSnapshot,query,updateDoc} from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
+import { getFirestore,collection, getDocs,setDoc ,deleteDoc,doc, onSnapshot,query,updateDoc} from "https://www.gstatic.com/firebasejs/10.9.0/firebase-firestore.js";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyA5gwMpnDhbztikwW6ANArB6YFtzZwCc-E",
@@ -19,8 +20,6 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-//const db = firebase.firestore();
-
 let bti =  document.getElementById("inser");
 
 let btc =  document.getElementById("consu");
@@ -30,18 +29,49 @@ let btins =  document.getElementById("inser2");
 const tablaUsuarios = document.querySelector("#tbUsuarios")
 
 
+
+//evento que almacena nos datos dentro de una subcoleccion
+
 btins.addEventListener('click', async (e) => {
     
-  alert("insertando coleccion......")
+  alert("insertando subcoleccion......")
 
   let idcel = document.getElementById("cel");
 
-
     try {
-      db.collection("usuarios").doc(idcel).collection("materias").doc("001").set({
-        idmat : "ingles",
-        idprofe: "felix",    
-      });
+
+      // donde                            coleccion          iddoc                           subcole   iddoc
+      const docRef = await setDoc(doc(db, "usuarios",  document.getElementById("cel").value ,"datos2", "001" ), 
+                             
+        
+      {
+        nombre: document.getElementById("nombre").value,
+        ap: document.getElementById("ap").value,
+        correo: document.getElementById("correo").value,
+        tel: document.getElementById("cel").value,
+        direccion:"josefa ortiz",
+             
+      }
+      
+      );
+
+/*
+      const docRef = await setDoc(doc(db, "usuarios/3323442331/datos/", "001" ), 
+                             
+        
+      {
+        nombre: document.getElementById("nombre").value,
+        ap: document.getElementById("ap").value,
+        correo: document.getElementById("correo").value,
+        tel: document.getElementById("cel").value,
+        direccion:"josefa ortiz",
+             
+      }
+      
+      );
+*/
+      
+
        // console.log("Document written with ID: ", docRef.id);
       } catch (e) {
         console.error("Error adding document: ", e);
